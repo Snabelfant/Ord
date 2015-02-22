@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/wordsource_source"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="AB\b\nCD"></TextView>
+
+    <LinearLayout
+        android:id="@+id/searchresults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/searchresult1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/searchresult2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           ></TextView>
+
+        <TextView
+            android:id="@+id/searchresult3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/searchresult4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/searchresult5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/searchresult6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/searchresult7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></TextView>
+
+    </LinearLayout>
+</LinearLayout>
+
