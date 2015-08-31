@@ -34,8 +34,8 @@ public class WiktionaryHtmlWordSource extends WikiHtmlWordSource {
     @Override
     protected String transform(Element top) {
         final String tagsToRemove =
-                "table,sup,noscript,img,div[id=page-secondary-actions]," +
-                 "a[class*=edit-page], div[class=thumbcaption],"+
+                "table,sup,noscript,script,img,div[id=page-secondary-actions]," +
+                 "a[class*=edit-page], div[class=thumbcaption],h1,"+
                         "h2:has(span[class=mw-headline]), div[class=NavFrame]"
 //                        "div[class~=references.*]," +
 //                        "div[class=noprint],div[class=floatleft]," +

@@ -30,7 +30,7 @@ public class WikipediaHtmlWordSource extends WikiHtmlWordSource {
     @Override
     protected String transform(Element top) {
         final String tagsToRemove =
-                "table,sup,h2,h3,noscript,img,div[class~=thumb.*], " +
+                "table,sup,h1, h2,h3,noscript,script,img,div[class~=thumb.*], " +
                         "div[class~=references.*],div[id=page-secondary-actions]," +
                         "div[class=noprint],div[class=floatleft]," +
                         "div[class=vedlikehold], div[class~=stubb.*]," +

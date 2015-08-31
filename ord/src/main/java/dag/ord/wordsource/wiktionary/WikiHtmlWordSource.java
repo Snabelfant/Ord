@@ -2,15 +2,12 @@ package dag.ord.wordsource.wiktionary;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.TextNode;
-import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dag.ord.searchresult.WordDescriptor;
-import dag.ord.util.Log;
 import dag.ord.wordsource.HtmlWordSource;
 
 /**
@@ -19,7 +16,7 @@ import dag.ord.wordsource.HtmlWordSource;
 public abstract class WikiHtmlWordSource extends HtmlWordSource {
     private static final String BASESEARCHURL = "http://[lang].m.[wiki].org/wiki/Special:Search?search=[query]";
     // "http://[lang].[wiki].org/w/api.php?format=json&action=query&titles=[query]&prop=revisions&rvprop=content";
-    private static final String BASEDISPLAYURL = "http://[lang].m.[wiki].org/wiki/[query]";
+    private static final String BASEDISPLAYURL = "https://[lang].m.[wiki].org/wiki/[query]";
     private String wiki;
     private String languageCode;
 
@@ -37,7 +34,7 @@ public abstract class WikiHtmlWordSource extends HtmlWordSource {
 
     @Override
     protected String getLookupUrl(String urlEncodedQueryWord) {
-        return BASESEARCHURL.replace("[lang]", languageCode).replace("[wiki]", wiki).replace("[query]", urlEncodedQueryWord);
+             return BASEDISPLAYURL.replace("[lang]", languageCode).replace("[wiki]", wiki).replace("[query]", urlEncodedQueryWord);
     }
 
 
