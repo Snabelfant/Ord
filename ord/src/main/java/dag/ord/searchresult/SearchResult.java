@@ -1,5 +1,7 @@
 package dag.ord.searchresult;
 
+import org.jsoup.helper.StringUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,11 @@ public class SearchResult {
 
     public void add(List<WordDescriptor> wordDescriptors) {
         if (wordDescriptors != null) {
-            this.wordDescriptors.addAll(wordDescriptors);
+            for (WordDescriptor wordDescriptor : wordDescriptors) {
+                if (!StringUtil.isBlank(wordDescriptor.getSummary())) {
+                    this.wordDescriptors.add(wordDescriptor);
+                }
+            }
         }
     }
 

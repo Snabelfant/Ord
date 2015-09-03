@@ -1,5 +1,6 @@
 package dag.ord.wordsource;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -60,6 +61,9 @@ public abstract class WordSource {
         try {
             String urlContent = UrlReader.read(lookupUrl);
             wordDescriptors = toWordDescriptors(queryWord, urlContent, maxWordDescriptorLength);
+        } catch (FileNotFoundException fe) {
+            wordDescriptors = new ArrayList<WordDescriptor>(1);
+            wordDescriptors.add(new WordDescriptor(null, null, 0));
         } catch (IOException e) {
             wordDescriptors = new ArrayList<WordDescriptor>(1);
             wordDescriptors.add(new WordDescriptor(null, e.toString(), maxWordDescriptorLength));
