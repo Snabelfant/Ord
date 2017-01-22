@@ -3,7 +3,7 @@ package dag.ord.wordsource.nob;
 import org.jsoup.nodes.Element;
 
 public class NoNnWordSource extends NoWordSource {
-    private static final String BASEURL = "http://www.nob-ordbok.uio.no/perl/ordbok.cgi?startpos=1&antall_vise=20&OPP=+[Q]&nynorsk=+&ordbok=nynorsk";
+    private static final String BASEURL = "http://ordbok.uib.no/perl/ordbok.cgi?startpos=1&antall_vise=20&OPP=+[Q]&nynorsk=+&ordbok=nynorsk";
 
 
     public NoNnWordSource() {

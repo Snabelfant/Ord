@@ -6,7 +6,7 @@ import org.jsoup.nodes.Element;
  * Created by Dag on 14.08.2014.
  */
 public class NoBmWordSource extends NoWordSource {
-    private static final String BASEURL = "http://www.nob-ordbok.uio.no/perl/ordbok.cgi?startpos=1&antall_vise=20&OPP=+[Q]&ordbok=bokmaal&bokmaal=%2B&spraak=bokmaal";
+    private static final String BASEURL = "http://ordbok.uib.no/perl/ordbok.cgi?startpos=1&antall_vise=20&OPP=+[Q]&ordbok=bokmaal&bokmaal=%2B&spraak=bokmaal";
 
 
     public NoBmWordSource() {
