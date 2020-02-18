@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ord"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppThemeX" >
         <activity
-            android:name=".Dictionary"
+            android:name=".Ord"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
