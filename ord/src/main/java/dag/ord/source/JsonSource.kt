@@ -3,7 +3,7 @@ package dag.ord.source
 import org.json.JSONException
 import org.json.JSONObject
 
-abstract class JsonSource protected constructor(shortName: String?) : Source(shortName!!) {
+abstract class JsonSource protected constructor(sourceId: String) : Source(sourceId) {
     @Throws(JSONException::class)
     private fun toString(jsonObject: JSONObject, key: String): String? {
         if (jsonObject.isNull(key)) {

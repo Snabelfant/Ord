@@ -15,8 +15,8 @@ object Sources {
         get() = _sources.size
 
     init {
-        _sources += SnlSource.createWordSources()
         _sources += NobSource.createWordSources()
+        _sources += SnlSource.createWordSources()
         _sources += WikipediaHtmlSource.createWordSources()
         _sources += WiktionaryHtmlSource.createWordSources()
     }

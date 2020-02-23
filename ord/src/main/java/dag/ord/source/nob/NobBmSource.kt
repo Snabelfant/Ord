@@ -2,9 +2,9 @@ package dag.ord.source.nob
 
 import org.jsoup.nodes.Element
 
-class NobBmSource : NobSource("NOBM", "byttutBM") {
-    override fun removeUnwantedTags(artikkel: Element?) {
-        artikkel!!.select("span[class=oppsgramordklassevindu]").remove()
+class NobBmSource() : NobSource("NOBBM", "byttutBM") {
+    override fun removeUnwantedTags(artikkel: Element) {
+        artikkel.select("span[class=oppsgramordklassevindu]").remove()
         artikkel.select("span[class=doeme kompakt]").remove()
         artikkel.select("span[class=tydingC kompakt]").remove()
         artikkel.select("span[class=doemeliste kompakt]").remove()
@@ -14,8 +14,8 @@ class NobBmSource : NobSource("NOBM", "byttutBM") {
         return !("style" == tagName || "img" == tagName)
     }
 
-    override fun findMarkup(element: Element?): String? {
-        val tag = element!!.tagName()
+    override fun findMarkup(element: Element): String? {
+        val tag = element.tagName()
         if ("span" == tag) {
             var attr = element.attr("class")
             if (attr != null && "" != attr) {

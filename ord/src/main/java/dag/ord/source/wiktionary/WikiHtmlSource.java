@@ -21,8 +21,8 @@ public abstract class WikiHtmlSource extends HtmlSource {
     private String languageCode;
 
 
-    WikiHtmlSource(String shortName, String wiki, String languageCode) {
-        super(shortName);
+    WikiHtmlSource(String sourceId, String wiki, String languageCode) {
+        super(sourceId);
         this.wiki = wiki;
         this.languageCode = languageCode;
 

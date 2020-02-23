@@ -5,23 +5,26 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dag.ord.OrdViewModel
 import dag.ord.R
 import dag.ord.search.AllSourceResults
-import dag.podkast.R
-import dag.podkast.model.ChannelOverview
-import dag.podkast.viewmodel.ChannelOverviewViewModel
+import dag.ord.util.Logger
+
 
 object OrdUi {
 
     fun build(activity: AppCompatActivity, viewModel: OrdViewModel) {
-        val channelOverviewView = activity.findViewById<ListView>(R.id.channeloverviewactivity_channels)
-        val adapter = ChannelOverviewAdapter(activity, CheckboxChangeListener(viewModel), viewModel)
-        channelOverviewView.adapter = adapter
+        val sourceResultsView = activity.findViewById<RecyclerView>(R.id.sourceresults)
+        sourceResultsView.layoutManager = LinearLayoutManager(activity);
+        sourceResultsView.setHasFixedSize(true)
+
+        val adapter = SourceResultAdapter(activity)
+        sourceResultsView.adapter = adapter
 
         viewModel.liveAllSourceResults.observe(activity, Observer { allSourceResults: AllSourceResults ->
             adapter.allSourceResults = allSourceResults
@@ -31,13 +34,13 @@ object OrdUi {
         val searchTermView = activity.findViewById<View>(R.id.searchterm) as EditText
         searchTermView.imeOptions = EditorInfo.IME_ACTION_SEARCH
         searchTermView.setOnEditorActionListener(TextView.OnEditorActionListener { textView, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            if (actionId in listOf(EditorInfo.IME_ACTION_SEARCH, EditorInfo.IME_ACTION_UNSPECIFIED)) {
                 val searchTerm = textView.text.toString().trim { it <= ' ' }
                 if (!searchTerm.isBlank()) {
                     val inputManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken,
+                    inputManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken,
                             InputMethodManager.HIDE_NOT_ALWAYS)
-                    adapter.search(searchTerm)
+                    viewModel.search(searchTerm)
                 }
                 return@OnEditorActionListener true
             }

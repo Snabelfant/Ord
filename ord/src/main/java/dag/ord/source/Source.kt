@@ -6,10 +6,7 @@ import dag.ord.util.UrlReader.read
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 
-abstract class Source(val shortName: String, val maxResultLength: Int = 500) {
-    val displayName
-        get() = if (shortName.length > 3) "${shortName.substring(0, 2)}\n${shortName.substring(2)}" else shortName
-
+abstract class Source(val sourceId: String, private val maxResultLength: Int = 500) {
     fun search(queryWord: String): SourceResult {
         val results =
                 try {
@@ -20,7 +17,7 @@ abstract class Source(val shortName: String, val maxResultLength: Int = 500) {
                     listOf(Result(null, e.toString(), maxResultLength))
                 }
 
-        return SourceResult(shortName, results)
+        return SourceResult(sourceId, results)
     }
 
     protected abstract fun toResults(queryWord: String, urlContent: String, maxResultLength: Int): List<Result>

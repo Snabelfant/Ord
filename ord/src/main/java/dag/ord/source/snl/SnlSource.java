@@ -15,8 +15,8 @@ public class SnlSource extends JsonSource {
     private static final String BASEURL = "https://[subdomene]snl.no/api/v1/search?query=[query]";
     private SubDomain subDomain;
 
-    private SnlSource(String shortName, SubDomain subDomain) {
-        super(shortName);
+    private SnlSource(String sourceId, SubDomain subDomain) {
+        super(sourceId);
         this.subDomain = subDomain;
     }
 

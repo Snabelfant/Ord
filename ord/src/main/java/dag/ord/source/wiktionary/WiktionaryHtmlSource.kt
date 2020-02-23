@@ -6,7 +6,7 @@ import org.jsoup.nodes.TextNode
 import org.jsoup.parser.Tag
 import java.util.*
 
-class WiktionaryHtmlSource private constructor(shortName: String, languageCode: String) : WikiHtmlSource(shortName, "wiktionary", languageCode) {
+class WiktionaryHtmlSource private constructor(sourceId: String, languageCode: String) : WikiHtmlSource(sourceId, "wiktionary", languageCode) {
     override fun transform(top: Element): String? {
         val tagsToRemove = "table,sup,noscript,script,img,div[id=page-secondary-actions]," +
                 "a[class*=edit-page], div[class=thumbcaption],h1," +
@@ -72,7 +72,6 @@ class WiktionaryHtmlSource private constructor(shortName: String, languageCode: 
         }
         var html = top.toString()
         html = html.replace("<div.*?>".toRegex(), "").replace("</div>", "")
-        //        Log.i( getShortName() + " '" + html + "'");
         return html
     }
 

@@ -1,6 +1,6 @@
 package dag.ord.search
 
-class Result(val displayUrl: String?, unabbreviatedSummary: String, maxWordDescriptorLength: Int) {
+class Result(val displayUrl: String?, val unabbreviatedSummary: String, maxWordDescriptorLength: Int) {
     val summary: String =
             if (maxWordDescriptorLength > 0 && unabbreviatedSummary.length > maxWordDescriptorLength)
                 unabbreviatedSummary.substring(0, maxWordDescriptorLength) + "..."

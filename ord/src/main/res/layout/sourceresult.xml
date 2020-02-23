@@ -3,8 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/sourceid"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="AB\nCD" />
+
     <LinearLayout
-        android:id="@+id/searchresults"
+        android:id="@+id/sourceresults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -12,44 +18,37 @@
         <TextView
             android:id="@+id/searchresult1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TextView>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/searchresult2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           ></TextView>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/searchresult3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TextView>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/searchresult4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TextView>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/searchresult5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TextView>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/searchresult6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TextView>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/searchresult7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TextView>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </LinearLayout>
