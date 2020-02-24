@@ -20,15 +20,14 @@ abstract class Source(val sourceId: String, private val maxResultLength: Int = 5
         return SourceResult(sourceId, results)
     }
 
-    protected abstract fun toResults(queryWord: String, urlContent: String, maxResultLength: Int): List<Result>
+    abstract fun toResults(queryWord: String, urlContent: String, maxResultLength: Int): List<Result>
 
     protected abstract fun getLookupUrl(urlEncodedQueryWord: String): String
 
-    protected fun urlEncode(queryWord: String): String {
-        return try {
-            URLEncoder.encode(queryWord, "UTF-8")
-        } catch (e: UnsupportedEncodingException) {
-            "UnsupportedEncodingException " + e.message
-        }
-    }
+    protected fun urlEncode(queryWord: String) : String =
+            try {
+                URLEncoder.encode(queryWord, "UTF-8")
+            } catch (e: UnsupportedEncodingException) {
+                "UnsupportedEncodingException ${e.message}"
+            }
 }

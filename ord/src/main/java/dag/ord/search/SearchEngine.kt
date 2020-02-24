@@ -15,7 +15,6 @@ object SearchEngine {
         val allSourceResults = AllSourceResults()
 
         Sources.sources.forEach {
-            Logger.info("Søk i ${it.sourceId}")
             SearchTask(allSourceResults, searchTerm).executeOnExecutor(executorService, it)
         }
     }
@@ -25,10 +24,6 @@ object SearchEngine {
         override fun onPostExecute(sourceResult: SourceResult) {
             allSourceResults += sourceResult
             liveAllSourceResults.postValue(allSourceResults)
-
-            if (sourceResult.sourceId == "NOBNN") {
-                Logger.info("Resultat i ${sourceResult.sourceId}: $sourceResult")
-            }
         }
     }
 

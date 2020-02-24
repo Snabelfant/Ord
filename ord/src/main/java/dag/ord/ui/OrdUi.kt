@@ -8,12 +8,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dag.ord.OrdViewModel
 import dag.ord.R
 import dag.ord.search.AllSourceResults
-import dag.ord.util.Logger
 
 
 object OrdUi {
@@ -22,6 +22,7 @@ object OrdUi {
         val sourceResultsView = activity.findViewById<RecyclerView>(R.id.sourceresults)
         sourceResultsView.layoutManager = LinearLayoutManager(activity);
         sourceResultsView.setHasFixedSize(true)
+        sourceResultsView.addItemDecoration(DividerItemDecoration(sourceResultsView.context, DividerItemDecoration.VERTICAL))
 
         val adapter = SourceResultAdapter(activity)
         sourceResultsView.adapter = adapter

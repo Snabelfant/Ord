@@ -23,7 +23,7 @@ class AllSourceResults {
         get() = sourceResults.size
 
     companion object {
-        private val order = mutableMapOf(
+        private val order = mapOf(
                 "NOBBM" to 0,
                 "NOBNN" to 1,
                 "SNL" to 10,

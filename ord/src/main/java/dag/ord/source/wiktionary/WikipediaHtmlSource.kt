@@ -6,7 +6,7 @@ import org.jsoup.nodes.TextNode
 import org.jsoup.parser.Tag
 import java.util.*
 
-class WikipediaHtmlSource(sourceId: String, languageCode: String?) : WikiHtmlSource(sourceId, "wikipedia", languageCode) {
+class WikipediaHtmlSource(sourceId: String, languageCode: String) : WikiHtmlSource(sourceId, "wikipedia", languageCode) {
     override fun transform(top: Element): String? {
         val tagsToRemove = "table,sup,h1, h2,h3,noscript,script,img,div[class~=thumb.*], " +
                 "div[class~=references.*],div[id=page-secondary-actions]," +

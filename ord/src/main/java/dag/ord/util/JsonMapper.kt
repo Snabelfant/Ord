@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectWriter
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 
-import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -22,7 +21,6 @@ class JsonMapper {
         writer = objectMapper.writer()
     }
 
-    @Throws(IOException::class)
     fun write(outputStream: OutputStream, any: Any, pretty: Boolean = false) =
             if (pretty) {
                 writerPretty.writeValue(outputStream, any)
@@ -30,15 +28,15 @@ class JsonMapper {
                 writer.writeValue(outputStream, any)
             }
 
-    @Throws(IOException::class)
-    fun write(any: Any, pretty: Boolean = false) =
+    fun write(any: Any, pretty: Boolean = false) : String =
             if (pretty) {
                 writerPretty.writeValueAsString( any)
             } else {
                 writer.writeValueAsString(any)
             }
 
-    @Throws(IOException::class)
     fun <T> read(inputStream: InputStream, typeReference: TypeReference<T>): T =
             objectMapper.readValue(inputStream, typeReference)
+
+    fun<T> read(s : String, type : TypeReference<T>) : T = objectMapper.readValue(s, type)
 }

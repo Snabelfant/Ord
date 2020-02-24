@@ -12,31 +12,17 @@ import java.util.*
 
 abstract class NobSource(sourceId: String, private val htmlTableId: String) : HtmlSource(sourceId) {
 
-    override fun toWordDescriptors(word: String, document: Document, maxResultLength: Int): List<Result> {
-        val results: MutableList<Result> = ArrayList()
-        val displayUrl = getLookupUrl(word)
-        val tables = document.select("table[id=$htmlTableId]")
-        if (tables.size > 0) {
-            val artikler = document.select("div[class=artikkelinnhold]")
-            for (artikkel in artikler) {
-                removeUnwantedTags(artikkel)
-                val artikkelHtmlSb = StringBuilder()
-                traverse(artikkel, artikkelHtmlSb)
-                val artikkelHtml = doReplacements(artikkelHtmlSb)
-                Logger.info("Art-html '$artikkelHtml'")
-
-                val isNotDuplicate = results.all { it.unabbreviatedSummary != artikkelHtml }
-
-                if (isNotDuplicate) {
-                    val result = Result(displayUrl, artikkelHtml, maxResultLength)
-                    results.add(result)
-                } else {
-                    Logger.info("Duplikat")
-                }
-            }
-        }
-        return results.toList()
-    }
+    override fun toResults(word: String, document: Document, maxResultLength: Int) =
+            document
+                    .select("div[class=artikkelinnhold]")
+                    .map { artikkel ->
+                        removeUnwantedTags(artikkel)
+                        val artikkelHtmlSb = StringBuilder()
+                        traverse(artikkel, artikkelHtmlSb)
+                        val artikkelHtml = doReplacements(artikkelHtmlSb)
+                        Result(getLookupUrl(word), artikkelHtml, maxResultLength)
+                    }
+                    .distinctBy { it.unabbreviatedSummary }
 
     protected abstract fun removeUnwantedTags(artikkel: Element)
     private fun doReplacements(artikkelHtml: StringBuilder) = artikkelHtml.toString().replace("([^ ])<i>".toRegex(), "$1 <i>")
