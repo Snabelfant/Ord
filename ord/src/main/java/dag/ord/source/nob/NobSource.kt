@@ -3,16 +3,17 @@ package dag.ord.source.nob
 import dag.ord.search.Result
 import dag.ord.source.HtmlSource
 import dag.ord.source.Source
-import dag.ord.util.Logger
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.nodes.Node
 import org.jsoup.nodes.TextNode
 import java.util.*
 
+private const val BASEURL = "https://ordbok.uib.no/perl/ordbok.cgi?startpos=1&antall_vise=20&OPP=+[Q]&nynorsk=+&ordbok=nynorsk"
+
 abstract class NobSource(sourceId: String, private val htmlTableId: String) : HtmlSource(sourceId) {
 
-    override fun toResults(word: String, document: Document, maxResultLength: Int) =
+    override fun toResults(query: String, document: Document, maxResultLength: Int) =
             document
                     .select("div[class=artikkelinnhold]")
                     .map { artikkel ->
@@ -20,7 +21,7 @@ abstract class NobSource(sourceId: String, private val htmlTableId: String) : Ht
                         val artikkelHtmlSb = StringBuilder()
                         traverse(artikkel, artikkelHtmlSb)
                         val artikkelHtml = doReplacements(artikkelHtmlSb)
-                        Result(getLookupUrl(word), artikkelHtml, maxResultLength)
+                        Result(getLookupUrl(query), artikkelHtml, maxResultLength)
                     }
                     .distinctBy { it.unabbreviatedSummary }
 

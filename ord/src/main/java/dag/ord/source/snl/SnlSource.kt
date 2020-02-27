@@ -10,9 +10,9 @@ import java.util.*
 
 private const val BASEURL = "https://[subdomene]snl.no/api/v1/search?query=[query]"
 
-class SnlSource private constructor(sourceId: String, private val subDomain: SubDomain) : Source(sourceId) {
+class SnlSource private constructor(sourceId: String, private val subDomain: String) : Source(sourceId) {
     override fun getLookupUrl(urlEncodedQueryWord: String): String {
-        return BASEURL.replace("[subdomene]", subDomain.subDomain).replace("[query]", urlEncodedQueryWord)
+        return BASEURL.replace("[subdomene]", subDomain).replace("[query]", urlEncodedQueryWord)
     }
 
     override fun toResults(queryWord: String, urlContent: String, maxResultLength: Int) =
@@ -23,16 +23,12 @@ class SnlSource private constructor(sourceId: String, private val subDomain: Sub
                         Result(it.articleUrl, summary, maxResultLength)
                     }
 
-    enum class SubDomain(val subDomain: String) {
-        SNL(""), NKL("nkl."), NBL("nbl."), SML("sml.")
-    }
-
     companion object {
         fun createWordSources() = listOf(
-            SnlSource("SNL", SubDomain.SNL),
-            SnlSource("NKL", SubDomain.NKL),
-            SnlSource("NBL", SubDomain.NBL),
-            SnlSource("SML", SubDomain.SML))
+            SnlSource("SNL", ""),
+            SnlSource("NKL", "nkl."),
+            SnlSource("NBL", "nbl."),
+            SnlSource("SML", "sml."))
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)

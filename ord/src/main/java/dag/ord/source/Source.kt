@@ -2,6 +2,7 @@ package dag.ord.source
 
 import dag.ord.search.Result
 import dag.ord.search.SourceResult
+import dag.ord.util.Logger
 import dag.ord.util.UrlReader.read
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder

@@ -1,9 +1,10 @@
 package dag.ord.source
 
+import dag.ord.source.naob.NaobSource
 import dag.ord.source.nob.NobSource
 import dag.ord.source.snl.SnlSource
-import dag.ord.source.wiktionary.WikipediaHtmlSource
-import dag.ord.source.wiktionary.WiktionaryHtmlSource
+import dag.ord.source.wiki.WikipediaSource
+import dag.ord.source.wiki.WiktionarySource
 
 object Sources {
     private val _sources = mutableListOf<Source>()
@@ -15,9 +16,10 @@ object Sources {
         get() = _sources.size
 
     init {
-        _sources += NobSource.createWordSources()
-        _sources += SnlSource.createWordSources()
-        _sources += WikipediaHtmlSource.createWordSources()
-        _sources += WiktionaryHtmlSource.createWordSources()
+//        _sources += NobSource.createWordSources()
+//        _sources += SnlSource.createWordSources()
+//        _sources += WikipediaSource.createWordSources()
+//        _sources += WiktionarySource.createWordSources()
+        _sources += NaobSource.createWordSources()
     }
 }
