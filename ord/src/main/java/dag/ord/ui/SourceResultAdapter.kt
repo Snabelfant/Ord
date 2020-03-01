@@ -37,7 +37,7 @@ class SourceResultAdapter(val context: Context) : RecyclerView.Adapter<SourceRes
                 resultView.visibility = View.VISIBLE
                 resultView.setBackgroundColor(backgroundColor)
                 val result = sourceResult.results[resultIndex]
-                resultView.text = Html.fromHtml(result.summary)
+                resultView.text = Html.fromHtml(result.summary, Html.FROM_HTML_MODE_LEGACY)
                 resultView.setOnClickListener {
                     try {
                         val uri = Uri.parse(result.displayUrl)
@@ -69,18 +69,22 @@ class SourceResultAdapter(val context: Context) : RecyclerView.Adapter<SourceRes
         val resultView5 = resultsLayoutManager.findViewById<View>(R.id.searchresult5) as TextView
         val resultView6 = resultsLayoutManager.findViewById<View>(R.id.searchresult6) as TextView
         val resultView7 = resultsLayoutManager.findViewById<View>(R.id.searchresult7) as TextView
-        resultsLayoutManager.setBackgroundColor(Color.BLACK)
+        val resultView8 = resultsLayoutManager.findViewById<View>(R.id.searchresult8) as TextView
+        val resultView9 = resultsLayoutManager.findViewById<View>(R.id.searchresult9) as TextView
+        val resultView10 = resultsLayoutManager.findViewById<View>(R.id.searchresult10) as TextView
+        val resultView11 = resultsLayoutManager.findViewById<View>(R.id.searchresult11) as TextView
+        val resultView12 = resultsLayoutManager.findViewById<View>(R.id.searchresult12) as TextView
         if (sourceResult.isEmpty) {
-            resultsLayoutManager.setBackgroundColor(Color.LTGRAY)
+            holder.sourceIdView.setBackgroundColor(Color.LTGRAY)
         } else {
             val resultCount = sourceResult.size
             if (resultCount == 0) {
-                resultsLayoutManager.setBackgroundColor(BG_NOTFOUND)
+                holder.sourceIdView.setBackgroundColor(BG_NOTFOUND)
             } else {
-                if (resultCount > 7) {
-                    resultsLayoutManager.setBackgroundColor(BG_TOOMANY)
+                if (resultCount > 12) {
+                    holder.sourceIdView.setBackgroundColor(BG_TOOMANY)
                 } else {
-                    resultsLayoutManager.setBackgroundColor(BG_FOUND)
+                    holder.sourceIdView.setBackgroundColor(BG_FOUND)
                 }
             }
         }
@@ -91,6 +95,11 @@ class SourceResultAdapter(val context: Context) : RecyclerView.Adapter<SourceRes
         populateResultView(resultView5, sourceResult, 4, BG_WD1)
         populateResultView(resultView6, sourceResult, 5, BG_WD2)
         populateResultView(resultView7, sourceResult, 6, BG_WD1)
+        populateResultView(resultView8, sourceResult, 7, BG_WD2)
+        populateResultView(resultView9, sourceResult, 8, BG_WD1)
+        populateResultView(resultView10, sourceResult, 9, BG_WD2)
+        populateResultView(resultView11, sourceResult, 10, BG_WD1)
+        populateResultView(resultView12, sourceResult, 11, BG_WD2)
     }
 
     override fun getItemCount() = allSourceResults.size

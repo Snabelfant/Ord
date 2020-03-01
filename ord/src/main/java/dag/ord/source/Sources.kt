@@ -16,10 +16,10 @@ object Sources {
         get() = _sources.size
 
     init {
-//        _sources += NobSource.createWordSources()
-//        _sources += SnlSource.createWordSources()
-//        _sources += WikipediaSource.createWordSources()
-//        _sources += WiktionarySource.createWordSources()
+        _sources += NobSource.createWordSources()
+        _sources += SnlSource.createWordSources()
+        _sources += WikipediaSource.createWordSources()
+        _sources += WiktionarySource.createWordSources()
         _sources += NaobSource.createWordSources()
     }
 }

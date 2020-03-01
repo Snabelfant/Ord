@@ -21,6 +21,10 @@ object OrdUi {
     fun build(activity: AppCompatActivity, viewModel: OrdViewModel) {
         val sourceResultsView = activity.findViewById<RecyclerView>(R.id.sourceresults)
         sourceResultsView.layoutManager = LinearLayoutManager(activity);
+//       sourceResultsView.layoutManager = object: LinearLayoutManager(activity) {
+//            override fun canScrollVertically()=false
+//        }
+
         sourceResultsView.setHasFixedSize(true)
         sourceResultsView.addItemDecoration(DividerItemDecoration(sourceResultsView.context, DividerItemDecoration.VERTICAL))
 

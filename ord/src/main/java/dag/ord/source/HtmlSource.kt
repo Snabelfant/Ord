@@ -11,5 +11,5 @@ abstract class HtmlSource protected constructor(sourceId: String) : Source(sourc
         return toResults(query, htmlDocument, maxResultLength)
     }
 
-    protected abstract fun toResults(word: String, document: Document, maxResultLength: Int): List<Result>
+    protected abstract fun toResults(query: String, document: Document, maxResultLength: Int): List<Result>
 }
