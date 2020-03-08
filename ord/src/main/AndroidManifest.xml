@@ -8,14 +8,14 @@
         android:label="@string/app_name"
         android:theme="@style/AppThemeX" >
         <activity
-            android:name=".Ord"
-            android:label="@string/app_name" >
+            android:name=".OrdActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".WebPageActivity" />
     </application>
 
 </manifest>

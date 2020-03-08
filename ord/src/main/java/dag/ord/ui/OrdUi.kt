@@ -21,12 +21,14 @@ object OrdUi {
     fun build(activity: AppCompatActivity, viewModel: OrdViewModel) {
         val sourceResultsView = activity.findViewById<RecyclerView>(R.id.sourceresults)
         sourceResultsView.layoutManager = LinearLayoutManager(activity);
-//       sourceResultsView.layoutManager = object: LinearLayoutManager(activity) {
-//            override fun canScrollVertically()=false
-//        }
-
         sourceResultsView.setHasFixedSize(true)
         sourceResultsView.addItemDecoration(DividerItemDecoration(sourceResultsView.context, DividerItemDecoration.VERTICAL))
+
+        activity.supportActionBar?.apply {
+            setLogo(R.drawable.ord_lite)
+            setDisplayUseLogoEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
 
         val adapter = SourceResultAdapter(activity)
         sourceResultsView.adapter = adapter

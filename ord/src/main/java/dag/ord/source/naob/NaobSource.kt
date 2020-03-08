@@ -18,9 +18,7 @@ class NaobSource(sourceId: String) : HtmlSource(sourceId) {
                 .getElementsByTag("script")
                 .filter { "__NEXT_DATA__" in it.html() }
                 .distinct()
-                .also { Logger.info("ND1 " + it) }
                 .map { it.html().replace("__NEXT_DATA__ = ", "").replace("</script>", "") }
-                .also { Logger.info("ND2 " + it) }
 
         val results = mutableListOf<Result>()
         jsonElements.forEach { jsonElement ->
@@ -34,14 +32,12 @@ class NaobSource(sourceId: String) : HtmlSource(sourceId) {
 
                 articles?.forEach {
                     val displayUrl = if (it.slug != null) PAGEURL.replace("[slug]", it.slug!!) else null
-                    Logger.info("Tekst=${it.text}")
                     val filteredText = it.text
                             ?.replace("<div class=\"shortform\">", "")
                             ?.replace("<span class=\"ordklasse-shortform\">", "<i>")
                             ?.replace("</span>", "</i>")
                             ?.replace("</div>", "")
                     val summary = "<b>${it.headWord?.capitalize()}</b> $filteredText"
-                    Logger.info("ND3 " + summary)
 
                     results += Result(displayUrl, summary, maxResultLength)
                 }

@@ -33,7 +33,7 @@ abstract class WikiSource(sourceId: String, val wiki : String, val languageCode:
         val urlContent = UrlReader.read(findPageUrl) ?: return null
         val searchResult = mapper.read(urlContent, object : TypeReference<SearchResult>() {})
 
-        return searchResult.query.pages[0].canonicalUrl
+        return searchResult.query.pages[0].canonicalUrl?.replace(wiki, "m.$wiki")
     }
 
     override fun getLookupUrl(urlEncodedQueryWord: String) =

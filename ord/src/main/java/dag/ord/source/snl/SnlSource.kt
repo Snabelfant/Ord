@@ -15,7 +15,7 @@ class SnlSource private constructor(sourceId: String, private val subDomain: Str
         return BASEURL.replace("[subdomene]", subDomain).replace("[query]", urlEncodedQueryWord)
     }
 
-    override fun toResults(queryWord: String, urlContent: String, maxResultLength: Int) =
+    override fun toResults(query: String, urlContent: String, maxResultLength: Int) =
             JsonMapper()
                     .read(urlContent, object : TypeReference<List<Article>>() {})
                     .map {

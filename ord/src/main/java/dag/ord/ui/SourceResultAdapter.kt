@@ -4,14 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import dag.ord.R
+import dag.ord.WebPageActivity
 import dag.ord.search.AllSourceResults
 import dag.ord.search.SourceResult
 import dag.ord.util.Logger
@@ -19,13 +22,13 @@ import dag.ord.util.YesNoCancel.Companion.EMPTY
 import dag.ord.util.YesNoCancel.Companion.show
 import java.net.MalformedURLException
 
-class SourceResultAdapter(val context: Context) : RecyclerView.Adapter<SourceResultAdapter.MyViewHolder>() {
+class SourceResultAdapter(private val context: Context) : RecyclerView.Adapter<SourceResultAdapter.MyViewHolder>() {
     var allSourceResults = AllSourceResults()
     private val BG_WD1 = -0x219
     private val BG_WD2 = -0x63c
     private val BG_TOOMANY = -0xcd
     private val BG_NOTFOUND = -0x3334
-    private val BG_FOUND = -0x330067
+    private val BG_FOUND = Color.WHITE
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val sourceIdView: TextView = itemView.findViewById(R.id.sourceid)
@@ -40,9 +43,7 @@ class SourceResultAdapter(val context: Context) : RecyclerView.Adapter<SourceRes
                 resultView.text = Html.fromHtml(result.summary, Html.FROM_HTML_MODE_LEGACY)
                 resultView.setOnClickListener {
                     try {
-                        val uri = Uri.parse(result.displayUrl)
-                        val intent = Intent(Intent.ACTION_VIEW, uri)
-                        context.startActivity(intent)
+                        context.startActivity(Intent(context, WebPageActivity::class.java).putExtra("url", result.displayUrl))
                     } catch (e: MalformedURLException) {
                         show(context, "Ugyldig url", "'" + result.displayUrl + "'", EMPTY, null, null)
                     }

@@ -21,7 +21,7 @@ abstract class Source(val sourceId: String, private val maxResultLength: Int = 5
         return SourceResult(sourceId, results)
     }
 
-    abstract fun toResults(queryWord: String, urlContent: String, maxResultLength: Int): List<Result>
+    abstract fun toResults(query: String, urlContent: String, maxResultLength: Int): List<Result>
 
     protected abstract fun getLookupUrl(urlEncodedQueryWord: String): String
 
